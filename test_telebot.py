@@ -11,7 +11,6 @@ BOT_URL = BOT_URL.strip()
 # print(bot.get_me())
 
 
-
 # Enable logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
