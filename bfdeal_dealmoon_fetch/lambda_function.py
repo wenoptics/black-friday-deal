@@ -1,6 +1,6 @@
 import json
 import time
-from bfdeal_dealmoon_fetch.dealmoon_api import get_dealmoon_deal_list
+from dealmoon_api import get_dealmoon_deal_list
 
 
 def lambda_handler(event, context):
