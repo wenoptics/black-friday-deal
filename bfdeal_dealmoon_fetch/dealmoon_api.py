@@ -33,7 +33,7 @@ def get_dealmoon_deal_list():
         # Persistent to DynamoDB
         storage.update_deal(deal_dict)
 
-    return []  # ret_list
+    return {'dael_counts': len(deals)}
 
 
 if __name__ == '__main__':
