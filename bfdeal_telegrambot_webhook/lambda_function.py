@@ -13,7 +13,6 @@ HELP_TEXT = """Supported commands are:
 /getNewestDeal
 /mySubscription
 /addOneKeyword
-/myKeywords
 """
 
 

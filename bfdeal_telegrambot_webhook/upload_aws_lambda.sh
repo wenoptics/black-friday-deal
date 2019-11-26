@@ -7,6 +7,7 @@ zip -r9 ${BASE_DIR}/bfdeal_telegrambot_webhook/deploy.zip .
 
 pushd ${BASE_DIR}/bfdeal_telegrambot_webhook/ || exit
 zip -g deploy.zip lambda_function.py
+zip -g deploy.zip storage_user.py
 
 echo 'Uploading Lambda Function...'
 aws lambda update-function-code --function-name ${LAMBDA_FUNCTION_NAME} --zip-file fileb://deploy.zip
