@@ -1,3 +1,5 @@
+import json
+
 from bs4 import BeautifulSoup
 import requests
 
@@ -39,7 +41,7 @@ def get_dealmoon_deal_list():
             FunctionName='bfdeal_monitor_push',
             InvocationType='Event',
             LogType='Tail',
-            Payload=deal_dict,
+            Payload=bytes(json.dumps(deal_dict), encoding='utf8'),
             # Qualifier='1'
         )
 

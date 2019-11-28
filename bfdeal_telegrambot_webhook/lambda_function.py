@@ -52,10 +52,15 @@ def lambda_handler(event, context):
 
         print(cmd, text)
 
-        if cmd == '/getNewestDeal':
+        if cmd == '/start':
+            telegram_api.send_message(f"""Welcome! You can use this bot to subscribe the deals you interested in.""",
+                                      chat_id, parse_mode='HTML')
+            telegram_api.send_message(HELP_TEXT,
+                                      chat_id, parse_mode='HTML')
+        elif cmd == '/getNewestDeal':
             deal = get_newest_deal_from_db()
             telegram_api.send_message(f'Here are the newest deals from Dealmoon:\n'
-                         f'{deal["title"]}', chat_id)
+                                      f'{deal["title"]}', chat_id)
         elif cmd == '/mySubscription':
             subs = storage_user.get_user_keywords(chat_id)
             if not subs:

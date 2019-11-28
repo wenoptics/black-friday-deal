@@ -14,8 +14,14 @@ Three AWS Lambda Functions + Several DynamoDB Tables, the structure is sketched 
 
  - 2019-11-24:
 
-Crawler ready. ChatBot served on AWS Lambda:
+   Crawler ready. ChatBot served on AWS Lambda:
 
-![](doc/dev-screenshot-0.png)
+   ![](doc/dev-screenshot-0.png)
+
+ - 2019-11-27:
+
+   ChatBot Ready:
+
+   ![](doc/gif-add-subscription.gif)
 
 

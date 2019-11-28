@@ -13,6 +13,7 @@ def lambda_handler(event, context):
             "deal_url": "str"
         }
     """
+
     # error = False
     # try:
     payload = json.loads(event['body'])
