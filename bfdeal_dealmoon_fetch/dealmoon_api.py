@@ -10,6 +10,11 @@ headers = {
 }
 
 
+import boto3
+
+lambda_client = boto3.client('lambda')
+
+
 def get_dealmoon_deal_list():
     r = requests.get(url_dealmoon, headers=headers, timeout=3)
 
@@ -20,7 +25,7 @@ def get_dealmoon_deal_list():
     deals = deal_list_container[0].select('div.mlist[data-dmt-d-deal-id]')
     del soup
 
-    # ret_list = []
+    ret_list = []
     for d in deals:
         # print(d.get('data-dmt-d-deal-id'), d.get('data-ad-type'), d.get('data-dmt-d-value'))
         deal_dict = {
@@ -28,12 +33,20 @@ def get_dealmoon_deal_list():
             'deal_id': d.get('data-dmt-d-deal-id'),
             'time': d.get('t')
         }
-        # ret_list.append(deal_dict)
+        ret_list.append(deal_dict)
+
+        lambda_client.invoke(
+            FunctionName='bfdeal_monitor_push',
+            InvocationType='Event',
+            LogType='Tail',
+            Payload=deal_dict,
+            # Qualifier='1'
+        )
 
         # Persistent to DynamoDB
         storage.update_deal(deal_dict)
 
-    return {'dael_counts': len(deals)}
+    return ret_list
 
 
 if __name__ == '__main__':

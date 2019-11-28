@@ -1,7 +1,7 @@
 import decimal
 
 import boto3
-from boto3.dynamodb.conditions import Attr
+from boto3.dynamodb.conditions import Key, Attr
 from botocore.exceptions import ClientError
 
 dynamodb = boto3.resource('dynamodb')
@@ -47,3 +47,8 @@ def get_user_keywords(user_id):
         return list(user['sub_list'])
 
     return []
+
+
+def get_active_user_list():
+    r = table.scan(FilterExpression=Attr('is_active').eq(True))
+    return r['Items']
